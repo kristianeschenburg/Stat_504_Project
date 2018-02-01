@@ -5,8 +5,7 @@ We'll be analyzing (tentatively) the relationship between Traumatic Brain Injury
 
 Included in this Allen Institute dataset are study participant metadata, quantitative histology and protein measurements of neuropathology, and RNA-sequencing (seq) analyses of the hippocampus and neocortex.
 
-Preprocessing by the Allen Institute included between-sample normalization of RNA-seq counts within a given region (hippocampus, parietal cortex, etc.) -- both the unnormalized and normalized data are available, but we use the normalized data for our analysis.  
-Due to the large file size of the RNA-seq data, we do not include the table here -- but it can be downloaded from here: http://aging.brain-map.org/api/v2/well_known_file_download/502999992 (note, this will download the .zip file directly).
+Preprocessing by the Allen Institute included between-sample normalization of RNA-seq counts within a given region (hippocampus, parietal cortex, etc.) -- both the unnormalized and normalized data are available, but we use the normalized data for our analysis.  Due to the large file size of the RNA-seq data, we do not include the table here -- but it can be downloaded from here: http://aging.brain-map.org/api/v2/well_known_file_download/502999992 (note, this will download the .zip file directly).
 
 Preprocessing by the Allen Institute included between-sample normalization of RNA-seq counts within a given region (hippocampus, parietal cortex, etc.) -- both the unnormalized and normalized data are available, but we use the normalized data for our analysis.  Due to the large file size of the RNA-seq data, we do not include the table here -- but it can be downloaded from here: http://aging.brain-map.org/api/v2/well_known_file_download/502999992 (note, this will download the .zip file directly).
 
