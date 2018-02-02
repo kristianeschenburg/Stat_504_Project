@@ -7,8 +7,6 @@ Included in this Allen Institute dataset are study participant metadata, quantit
 
 Preprocessing by the Allen Institute included between-sample normalization of RNA-seq counts within a given region (hippocampus, parietal cortex, etc.) -- both the unnormalized and normalized data are available, but we use the normalized data for our analysis.  Due to the large file size of the RNA-seq data, we do not include the table here -- but it can be downloaded from here: http://aging.brain-map.org/api/v2/well_known_file_download/502999992 (note, this will download the .zip file directly).
 
-Preprocessing by the Allen Institute included between-sample normalization of RNA-seq counts within a given region (hippocampus, parietal cortex, etc.) -- both the unnormalized and normalized data are available, but we use the normalized data for our analysis.  Due to the large file size of the RNA-seq data, we do not include the table here -- but it can be downloaded from here: http://aging.brain-map.org/api/v2/well_known_file_download/502999992 (note, this will download the .zip file directly).
-
 More information on the the Aging, TBI, and Dementia Study can be found here: http://aging.brain-map.org/overview/home
 More information on the ACT Study can be found here: https://www.kpwashingtonresearch.org/our-research/research-areas/aging-geriatrics/act-study-long-running-study-aging-examines-changes-group-health-patients-over-time/
 
