@@ -64,10 +64,14 @@ if __name__ == '__main__':
             Code/
                 formatData.py
             Data/
-                gene_expression_matrix/
+                gene_expression_matrix_2016-03-03/
                     columns-samples.csv
                     rows-genes.csv
                     fpkm_table_normalized.csv
+                    
+    To run, cd to Code/ and type "python formatData.py" in Terminal.
+    """
+
     """
     
     dataDir = '../Data/gene_expression_matrix_2016-03-03/'
