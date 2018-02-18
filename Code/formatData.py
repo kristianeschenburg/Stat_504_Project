@@ -70,7 +70,7 @@ if __name__ == '__main__':
                     fpkm_table_normalized.csv
     """
     
-    dataDir = '../Data/gene_expression_matrix/'
+    dataDir = '../Data/gene_expression_matrix_2016-03-03/'
     
     # Load file mapping RNA-IDs to subject donor IDs
     col_file = ''.join([dataDir,'columns-samples.csv'])
