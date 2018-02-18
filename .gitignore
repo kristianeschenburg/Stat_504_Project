@@ -1,0 +1,9 @@
+# Byte-compiled / optimized / DLL files
+*.py[cod]
+*.xml
+*.ipynb
+*.out
+*fpkm*
+*rows-genes.csv*
+*columns-samples.csv*
+*gene_expression_matrix*
