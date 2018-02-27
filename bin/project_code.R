@@ -12,10 +12,12 @@ data4[,i]<-as.numeric(as.character(data4[,i]))
 }
 
 m1<-glm(act_demented~.,family=binomial(link='logit'),data=data4)
-r1=rep(0,length())
-predict(m1)
+r1=rep(0,length(data4$act_demented))
+r1[predict(m1)>0]=1
+sum(r1==data4$act_demented)/length(data4$act_demented)
 plot(m1)
 summary(m1)
+plot(data4$apo_e4_allele,data4$act_demented)
 
 m2<-lm(act_demented~.,data=data4)
 summary(m2)
