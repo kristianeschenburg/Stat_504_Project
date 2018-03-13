@@ -9,7 +9,7 @@ Created on Sat Feb 17 11:39:13 2018
 import numpy as np
 import pandas as pd
 
-def region_table(gene_data,s2r_map,region):
+def rna_table(gene_data,s2r_map,region):
     
     """
     Given a table of (Gene IDs x RNA IDs), subset gene data to only RNA IDs
@@ -54,6 +54,36 @@ def region_table(gene_data,s2r_map,region):
     
     return G
 
+def neuropath_table(column_names,s2r_map,region):
+    
+    """
+    Given a table of neuropatholy samples, subset neuropath data by region.
+    
+    Parameters:
+    - - - - -
+        donors : list of donors in data
+        s2r_map : subj_id to region maps
+    """
+    
+    dataArray = np.zeros((len(s2r_map.keys()),len(column_names)))
+    
+    for j,subj in enumerate(s2r_map.keys()):
+
+        if np.any(s2r_map[subj][region]):
+            
+            tempData = np.asarray(s2r_map[subj][region]).squeeze()
+        else:
+            tempData = np.zeros((len(column_names),))
+            tempData.fill(np.nan)
+            
+        dataArray[j,:] = tempData
+    
+    G = pd.DataFrame(data = dataArray, columns = column_names)
+    G.index = s2r_map.keys()
+    
+    return G
+        
+    
 
 if __name__ == '__main__':
     
@@ -73,7 +103,6 @@ if __name__ == '__main__':
     """
 
     """
-    
     dataDir = '../Data/gene_expression_matrix_2016-03-03/'
     
     # Load file mapping RNA-IDs to subject donor IDs
@@ -90,7 +119,7 @@ if __name__ == '__main__':
     # Map donor ID to RNA IDs
     # {subject_ID: {Structure_Name: RNA_ID_#}}
     subj_region_map = {k: {}.fromkeys(regions) for k in subj_id}
-    
+
     for index,row in col_names.iterrows():
         
         subject = row['donor_id']
@@ -106,8 +135,8 @@ if __name__ == '__main__':
     # Load file of (Gene ID x RNA ID) expression values
     gene_file = ''.join([dataDir,'fpkm_table_normalized.csv'])
     gene_data = pd.read_csv(gene_file)
-    
-    # fo each region, generate unique data frame
+
+    # for each region, generate unique data frame
     fwm = region_table(gene_data,subj_region_map,'FWM')
     hip = region_table(gene_data,subj_region_map,'HIP')
     pcx = region_table(gene_data,subj_region_map,'PCx')
@@ -118,3 +147,33 @@ if __name__ == '__main__':
     hip.to_csv(''.join([dataDir,'GeneData_HIP.csv']))
     pcx.to_csv(''.join([dataDir,'GeneData_PCX.csv']))
     tcx.to_csv(''.join([dataDir,'GeneData_TCX.csv']))
+    """
+    
+    dataDir = '../Data/'
+    clinical_file = '../Data/clinical_descriptors.csv'
+    clinical = pd.read_csv(clinical_file)
+    
+    neuropath_file = '../Data/neuropathology_matrix.csv'
+    neuropath = pd.read_csv(neuropath_file)
+    
+    donors = list(set(clinical['donor_id']))
+    regions = list(set(neuropath['structure_acronym']))
+    
+    s2r_map = {k : {}.fromkeys(regions) for k in donors}
+    
+    for i in np.arange(neuropath.shape[0]):
+        
+        temp = neuropath.iloc[i]
+        subj = temp['donor_id']
+        reg = temp['structure_acronym']
+        
+        s2r_map[subj][reg] = np.asarray(list(temp[4:])).squeeze()
+     
+    fwm = neuropath_table(neuropath.columns[4:],s2r_map,'FWM')
+    fwm.to_csv(''.join([dataDir,'NeuroPath_FWM.csv']))
+    hip = neuropath_table(neuropath.columns[4:],s2r_map,'HIP')
+    hip.to_csv(''.join([dataDir,'NeuroPath_HIP.csv']))
+    pcx = neuropath_table(neuropath.columns[4:],s2r_map,'PCx')
+    pcx.to_csv(''.join([dataDir,'NeuroPath_PCx.csv']))
+    tcx = neuropath_table(neuropath.columns[4:],s2r_map,'TCx')
+    tcx.to_csv(''.join([dataDir,'NeuroPath_TCx.csv']))
